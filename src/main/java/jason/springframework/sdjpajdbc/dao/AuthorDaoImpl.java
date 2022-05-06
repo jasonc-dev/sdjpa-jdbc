@@ -37,11 +37,23 @@ public class AuthorDaoImpl implements AuthorDao {
 
                 return author;
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
         return null;
     }
 }
