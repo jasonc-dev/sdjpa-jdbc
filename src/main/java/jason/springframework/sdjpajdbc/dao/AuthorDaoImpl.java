@@ -122,7 +122,7 @@ public class AuthorDaoImpl implements AuthorDao {
         Author author = new Author();
         author.setId(resultSet.getLong("id"));
         author.setFirstName(resultSet.getString("first_name"));
-        author.setFirstName(resultSet.getString("last_name"));
+        author.setLastName(resultSet.getString("last_name"));
         return author;
     }
 }
