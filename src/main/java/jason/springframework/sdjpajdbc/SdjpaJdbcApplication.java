@@ -1,4 +1,4 @@
-package jason.springframework.sdjpajdbc.sdjpajdbc;
+package jason.springframework.sdjpajdbc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

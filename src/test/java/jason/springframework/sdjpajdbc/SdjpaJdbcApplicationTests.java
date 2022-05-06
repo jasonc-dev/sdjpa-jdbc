@@ -1,4 +1,4 @@
-package jason.springframework.sdjpajdbc.sdjpajdbc;
+package jason.springframework.sdjpajdbc;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

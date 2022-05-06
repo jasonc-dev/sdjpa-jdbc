@@ -1,4 +1,4 @@
-package jason.springframework.sdjpajdbc.sdjpajdbc.domain;
+package jason.springframework.sdjpajdbc.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

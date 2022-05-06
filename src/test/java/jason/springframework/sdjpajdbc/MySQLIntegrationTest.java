@@ -1,6 +1,6 @@
-package jason.springframework.sdjpajdbc.sdjpajdbc;
+package jason.springframework.sdjpajdbc;
 
-import jason.springframework.sdjpajdbc.sdjpajdbc.repositories.BookRepository;
+import jason.springframework.sdjpajdbc.repositories.BookRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
