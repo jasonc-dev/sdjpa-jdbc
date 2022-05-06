@@ -16,6 +16,33 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
+    public Author getById(Long id) {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = source.getConnection();
+            ps = connection.prepareStatement("SELECT * FROM author WHERE id = ?");
+            ps.setLong(1, id);
+            resultSet = ps.executeQuery();
+
+            if (resultSet.next()) {
+                return getAuthorFromRS(resultSet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                closeAll(resultSet, ps, connection);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    @Override
     public Author findAuthorByName(String firstName, String lastName) {
         Connection connection = null;
         PreparedStatement ps = null;
@@ -46,20 +73,27 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
-    public Author getById(Long id) {
+    public Author saveNewAuthor(Author author) {
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet resultSet = null;
 
         try {
             connection = source.getConnection();
-            ps = connection.prepareStatement("SELECT * FROM author WHERE id = ?");
-            ps.setLong(1, id);
-            resultSet = ps.executeQuery();
+            ps = connection.prepareStatement("INSERT INTO author (first_name, last_name) VALUES (?, ?)");
+            ps.setString(1, author.getFirstName());
+            ps.setString(2, author.getLastName());
+            ps.execute();
+
+            Statement statement = connection.createStatement();
+            resultSet = statement.executeQuery("SELECT LAST_INSERT_ID()");
 
             if (resultSet.next()) {
-                return getAuthorFromRS(resultSet);
+                Long savedId = resultSet.getLong(1);
+                return this.getById(savedId);
             }
+
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
