@@ -1,6 +1,7 @@
 package jason.springframework.sdjpajdbc;
 
 import jason.springframework.sdjpajdbc.dao.BookDao;
+import jason.springframework.sdjpajdbc.domain.Author;
 import jason.springframework.sdjpajdbc.domain.Book;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,6 @@ public class BookDaoIntegrationTest {
         book.setIsbn("1234");
         book.setPublisher("Self");
         book.setTitle("my book");
-        book.setAuthorId(3L);
 
         Book saved = bookDao.saveNewBook(book);
 
@@ -43,8 +43,11 @@ public class BookDaoIntegrationTest {
         book.setIsbn("1234");
         book.setPublisher("Self");
         book.setTitle("my book");
-        book.setAuthorId(3L);
 
+        Author author = new Author();
+        author.setId(3L);
+
+        book.setAuthor(author);
         Book saved = bookDao.saveNewBook(book);
 
         saved.setTitle("my book");
@@ -59,8 +62,11 @@ public class BookDaoIntegrationTest {
         book.setIsbn("1234");
         book.setPublisher("Self");
         book.setTitle("my book");
-        book.setAuthorId(3L);
 
+        Author author = new Author();
+        author.setId(3L);
+
+        book.setAuthor(author);
         Book saved = bookDao.saveNewBook(book);
 
         assertThat(saved).isNotNull();
